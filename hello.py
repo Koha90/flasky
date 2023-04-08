@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 
 app = Flask(__name__)
@@ -7,9 +7,10 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     """
-    index: function for render html
+    index: function for render html with your User-Agent
     """
-    return "<h1>Hello world, from flask</h1>"
+    user_agent = request.headers.get("User-Agent")
+    return f"<p>Your browser is {user_agent}"
 
 
 @app.route("/user/<name>")
